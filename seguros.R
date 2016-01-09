@@ -70,7 +70,7 @@ length(unique(seguros$Pais5))
 # PARAMETRIC TESTS
 ###############################
 
-# Shapiro-Wilk test (per sample)
+# Shapiro-Wilk test (per sample) --> NON-PARAMETRIC
 with(df, tapply(premio, pais, shapiro.test))
 
 # Bartlet test
@@ -89,10 +89,10 @@ summary(an1)
 # Tukey-HSD test
 TukeyHSD(aov(premio ~ pais, data=df))
 
-# Tukey HDS: plot confidence levels
+# Tukey-HSD test; plot confidence levels
 par(mar=c(5,6.1,4.1,2.1))
 plot(TukeyHSD(an1), las=1)
 
-# Tukey-HSD test
-t <- TukeyHSD(aov(premio ~ pais, data=df),conf.level = 0.99)
+# Tukey-HSD test, 99%
+t <- TukeyHSD(aov(premio ~ pais, data=df), conf.level = 0.99)
 plot(t, las=1)
